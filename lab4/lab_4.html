@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab4 Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.2.0/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.4/chai.min.js"></script>
+  <script>mocha.setup('bdd'); const assert = chai.assert;</script>
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script type="module">
+    import './lab4.js';
+    import { Book, isEmpty, obj, getSecondsToday, formatDate } from './lab4.js';
+
+    describe("Book class", () => {
+      it("should create a Book and return correct properties", () => {
+        const b = new Book("Test", 2020, 300);
+        assert.strictEqual(b.title, "Test");
+        assert.strictEqual(b.pubYear, 2020);
+        assert.strictEqual(b.price, 300);
+      });
+
+      it("should throw errors for invalid inputs", () => {
+        const b = new Book("Valid", 2000, 100);
+        assert.throws(() => b.title = "", /не может быть пустым/);
+        assert.throws(() => b.pubYear = -5, /должен быть положительным/);
+        assert.throws(() => b.price = 0, /должна быть положительным/);
+      });
+    });
+
+    describe("Book.compare", () => {
+      it("should sort by pubYear", () => {
+        const books = [
+          new Book("C", 1990, 100),
+          new Book("A", 1980, 200),
+          new Book("B", 2000, 300)
+        ];
+        books.sort(Book.compare);
+        assert.strictEqual(books[0].title, "A");
+        assert.strictEqual(books[2].title, "B");
+      });
+    });
+
+    describe("isEmpty", () => {
+      it("should return true for empty object", () => {
+        assert.isTrue(isEmpty({}));
+      });
+
+      it("should return false for object with symbol key", () => {
+        assert.isFalse(isEmpty({ [Symbol()]: true }));
+      });
+    });
+
+    describe("className addClass/removeClass", () => {
+      it("should add and remove classes correctly", () => {
+        obj.className = 'open menu';
+        obj.addClass('new');
+        assert.include(obj.className, 'new');
+        obj.removeClass('menu');
+        assert.notInclude(obj.className, 'menu');
+      });
+    });
+
+    describe("getSecondsToday", () => {
+      it("should return value between 0 and 86400", () => {
+        const sec = getSecondsToday();
+        assert.isAtLeast(sec, 0);
+        assert.isAtMost(sec, 86400);
+      });
+    });
+
+    describe("formatDate", () => {
+      it("should return formatted date", () => {
+        const d = new Date(2020, 0, 1);
+        assert.strictEqual(formatDate(d), "01.01.20");
+      });
+    });
+
+    mocha.run();
+  </script>
+</body>
+</html>
