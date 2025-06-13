@@ -74,8 +74,8 @@ export class Book {
  * @returns {boolean} true если объект пустой
  */
 export function isEmpty(obj) {
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) return false;
+  if (Object.getOwnPropertyNames(obj).length != 0) {
+    return false;
   }
   return Object.getOwnPropertySymbols(obj).length === 0;
 }
