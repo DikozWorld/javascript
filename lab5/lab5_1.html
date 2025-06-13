@@ -386,14 +386,12 @@
 
 
    <script>
- /* ваш код */
-
-const rows = document.querySelectorAll('table tr');
-
-// Пройдёмся по всем строкам с 1 по 8 (реальные строки доски)
-for (let i = 1; i <= 8; i++) {
+   const rows = document.querySelectorAll('table tr');
+   
+   // Пройдёмся по всем строкам с 1 по 8 (реальные строки доски)
+   for (let i = 1; i <= 8; i++) {
+    
     const cells = rows[i].querySelectorAll('td');
-
     // Проходим по столбцам от 1 до 8 (реальные клетки доски)
     for (let j = 1; j <= 8; j++) {
         const cell = cells[j];
@@ -401,10 +399,8 @@ for (let i = 1; i <= 8; i++) {
         const isDark = (i + j) % 2 === 0;
         cell.style.backgroundColor = isDark ? '#ffce9e' : '#d18b47';
     }
-}
-
-
-    </script>
+    }
+</script>
 </body>
 
 </html>
