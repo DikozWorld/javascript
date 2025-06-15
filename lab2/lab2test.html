@@ -1,33 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Lab 2</title>
-  <!-- добавим стили mocha для отображения результатов -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
-  <!-- добавляем сам фреймворк mocha -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
-  <script>
-    // включаем режим тестирования в стиле BDD
-    mocha.setup('bdd');
-  </script>
-  <!-- добавим chai -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
-  <script>
-    // chai предоставляет большое количество функций. Объявим assert глобально
-    let assert = chai.assert;
-  </script>
+  <meta charset="utf-8">
+  <title>Тесты для lab2.js</title>
+  <!-- Подключаем стили Mocha -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.0.0/mocha.css">
+  <style>
+    body { padding: 20px; }
+  </style>
 </head>
-
 <body>
+  <!-- Контейнер для результатов тестов -->
   <div id="mocha"></div>
 
-  <!-- ВСТАВКА всех 8 функций -->
-  <script src="lab2.js"></script>
-  <script src="lab2test.js"></script>
+  <!-- Подключаем Mocha и Chai -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.0.0/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.0/chai.min.js"></script>
 
-  <!-- запускаем тесты! -->
   <script>
+    // Настраиваем Mocha и Chai
+    mocha.setup('bdd');
+    const { assert, expect } = chai;
+  </script>
+
+  <!-- Импортируем тестируемые функции -->
+  <script type="module">
+    import { 
+      pow,
+      sumTo,
+      isLeapYear,
+      factorial,
+      fib,
+      compare,
+      sum,
+      addBlackSpot
+    } from './lab2.js';
+
+    // Делаем функции глобальными для тестов
+    window.pow = pow;
+    window.sumTo = sumTo;
+    window.isLeapYear = isLeapYear;
+    window.factorial = factorial;
+    window.fib = fib;
+    window.compare = compare;
+    window.sum = sum;
+    window.addBlackSpot = addBlackSpot;
+  </script>
+
+  <!-- Подключаем тесты -->
+  <script>
+    describe("Тесты для lab2.js", function() {
+      describe("pow()", function() {
+        it("2^3 = 8", function() {
+          assert.equal(pow(2, 3), 8);
+        });
+        it("5^0 = 1", function() {
+          assert.equal(pow(5, 0), 1);
+        });
+        it("3^-2 ≈ 0.111", function() {
+          assert.closeTo(pow(3, -2), 0.111, 0.001);
+        });
+      });
+
+      describe("sumTo()", function() {
+        it("sumTo(100) = 5050", function() {
+          assert.equal(sumTo(100), 5050);
+        });
+        it("sumTo(1) = 1", function() {
+          assert.equal(sumTo(1), 1);
+        });
+      });
+
+      describe("isLeapYear()", function() {
+        it("2020 - високосный", function() {
+          assert.isTrue(isLeapYear(2020));
+        });
+        it("1900 - не високосный", function() {
+          assert.isFalse(isLeapYear(1900));
+        });
+      });
+
+      describe("factorial()", function() {
+        it("5! = 120", function() {
+          assert.equal(factorial(5), 120n);
+        });
+        it("0! = 1", function() {
+          assert.equal(factorial(0), 1n);
+        });
+      });
+
+      describe("fib()", function() {
+        it("fib(7) = 13", function() {
+          assert.equal(fib(7), 13n);
+        });
+        it("fib(0) = 0", function() {
+          assert.equal(fib(0), 0n);
+        });
+      });
+
+      describe("compare()", function() {
+        it("compare(5)(10) = true", function() {
+          assert.isTrue(compare(5)(10));
+        });
+        it("compare(5)(3) = false", function() {
+          assert.isFalse(compare(5)(3));
+        });
+      });
+
+      describe("sum()", function() {
+        it("sum(1,2,3) = 6", function() {
+          assert.equal(sum(1, 2, 3), 6);
+        });
+        it("sum() = 0", function() {
+          assert.equal(sum(), 0);
+        });
+      });
+
+      describe("addBlackSpot()", function() {
+        it("добавляет скрытое свойство", function() {
+          const obj = {};
+          addBlackSpot(obj);
+          assert.isTrue(obj[Symbol.for("blackSpot")]);
+        });
+      });
+    });
+
+    // Запускаем тесты
     mocha.run();
   </script>
 </body>
