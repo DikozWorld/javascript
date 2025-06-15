@@ -1,111 +1,110 @@
+'use strict';
+import {
+    fib
+} from './lab2.js';
 /**
- * Возвращает дробную часть числа.
- * @param {number} num - Число.
- * @returns {number} Дробная часть числа (от 0 до 1).
+ * Программа возвращает дробную часть числа
+ * @param {number} num 
+ * @returns дробную часть числа
  */
 export function getDecimal(num) {
-  const decimal = Math.abs(num) % 1;
-  return num >= 0 ? decimal : 1 - decimal;
+    if (Math.trunc(num) == num) {
+        return 0;
+    }
+    else if (num < 0) {
+        return num - (-Math.ceil(-num));
+    }
+
+    if (num > 1) {
+        return +(num - Math.trunc(num)).toFixed(10);
+    }
 }
 
+
 /**
- * Нормализует URL, добавляя https:// в начало.
- * @param {string} url - URL для нормализации.
- * @returns {string} Нормализованный URL.
+ * Функция  возвращает строку str с заглавным первым символом
+ * @param {string} str 
+ * @returns  возвращает строку str с заглавным первым символом
  */
-export function normalizeUrl(url) {
-  return url.startsWith('http://') || url.startsWith('https://')
-    ? `https://${url.replace(/^https?:\/\//, '')}`
-    : `https://${url}`;
+export function ucFirst(str) {
+    if (!str) {
+        return str;
+    }
+    else {
+        return str[0].toUpperCase() + str.slice(1);
+    }
 }
 
+
 /**
- * Проверяет строку на наличие подстрок 'viagra' или 'XXX' (без учёта регистра).
- * @param {string} str - Строка для проверки.
- * @returns {boolean} true, если найдено совпадение.
+ * Функция возвращает true, если строка str содержит 'viagra' или 'XXX', а иначе false
+ * @param {string} str 
+ * @returns возвращает true, если строка str содержит 'viagra' или 'XXX', а иначе false
  */
 export function checkSpam(str) {
-  const lowerStr = str.toLowerCase();
-  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+    let newstr = str.toLowerCase();
+    return newstr.includes('viagra') || newstr.includes('xxx');
 }
 
+
 /**
- * Усекает строку до maxlength символов, добавляя многоточие при необходимости.
- * @param {string} str - Строка.
- * @param {number} maxlength - Максимальная длина.
- * @returns {string} Усечённая строка.
+ * Функция проверяет длину строки str, и если она превосходит maxlength – заменяет конец str на символ многоточие "…"
+ * @param {string} str 
+ * @param {number} maxlength 
+ * @returns отформатированная строка 
  */
 export function truncate(str, maxlength) {
-  return str.length > maxlength
-    ? str.slice(0, maxlength - 1) + '…'
-    : str;
+    if (str.length < maxlength) {
+        return str;
+    }
+    else {
+        return str.slice(0, maxlength - 1) + '…';
+    }
 }
 
+
 /**
- * Преобразует строку с дефисами в camelCase.
- * @param {string} str - Строка вида 'var-test-text'.
- * @returns {string} Строка в camelCase ('varTestText').
+ *  Функция преобразует строку вида 'var-test-text' в 'varTestText'
+ * @param {string} str 
+ * @returns строка вида'varTestText'
  */
 export function camelize(str) {
-  return str
-    .split('-')
-    .map((word, index) => index === 0 ? word : ucFirst(word))
-    .join('');
+    let str_copy = str.split("-");
+    let strnew = "";
+    for (let i = 0; i <= str_copy.length - 1; i++) {
+        if (i == 0) strnew = str_copy[0];
+        else strnew += ucFirst(str_copy[i]);
+    }
+    return strnew;
 }
-
 /**
- * Делает первую букву строки заглавной.
- * @param {string} str - Строка.
- * @returns {string} Строка с заглавной первой буквой.
- */
-function ucFirst(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-import { fib } from '../lab2/lab2';
-
-/**
- * Возвращает массив чисел Фибоначчи до n-го (не включая его).
- * @param {number} n - Количество чисел.
- * @returns {bigint[]} Массив чисел Фибоначчи.
+ * Функция  возвращает массив, заполненный числами Фибоначчи до n-го (не включая его)
+ * @param {number} n 
+ * @returns  массив, заполненный числами Фибоначчи до n-го (не включая его)
  */
 export function fibs(n) {
-  const result = [];
-  for (let i = 0; i < n; i++) {
-    result.push(fib(i));
-  }
-  return result;
+    let mas = [];
+    for (let i = 0; i < n; i += 1) {
+        mas.push(fib(i));
+    }
+    return mas;
 }
-
 /**
- * Возвращает n-ное число Фибоначчи (из модуля lab2.js).
- * @param {number} n - Номер числа.
- * @returns {bigint} Число Фибоначчи.
- */
-function fib(n) {
-  if (n === 0) return 0n;
-  if (n === 1) return 1n;
-  let a = 0n, b = 1n;
-  for (let i = 2; i <= n; i++) {
-    [a, b] = [b, a + b];
-  }
-  return b;
-}
-
-/**
- * Сортирует массив чисел по убыванию.
- * @param {number[]} arr - Массив чисел.
- * @returns {number[]} Новый массив, отсортированный по убыванию.
+ * Функция возвращает массив из тех же элементов, но отсортированный по убыванию
+ * @param {array} arr 
+ * @returns  массив из тех же элементов, но отсортированный по убыванию
  */
 export function arrReverseSorted(arr) {
-  return [...arr].sort((a, b) => b - a);
+    let arr_copy = arr.slice();
+    return arr_copy.sort(function (a, b) {
+        return b - a;
+    })
 }
-
 /**
- * Возвращает массив уникальных значений.
- * @param {Array} arr - Массив с повторяющимися элементами.
- * @returns {Array} Массив уникальных значений.
+ * Функция массив уникальных, не повторяющихся значений массива arr
+ * @param {array} arr 
+ * @returns массив уникальных, не повторяющихся значений массива arr
  */
 export function unique(arr) {
-  return [...new Set(arr)];
+    return Array.from(new Set(arr));
 }
