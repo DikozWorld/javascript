@@ -51,20 +51,7 @@ export function camelize(str) {
     }).join('');
 }
 
-/**
- * Возвращает массив чисел Фибоначчи до n-го (не включая)
- * @param {number} n
- * @returns {bigint[]}
- */
-export function fibs(n) {
-    const result = [];
-    let a = 0n, b = 1n;
-    for (let i = 0; i < n; i++) {
-        result.push(a);
-        [a, b] = [b, a + b];
-    }
-    return result;
-}
+const { fib } = require('../lab2/lab2');
 
 /**
  * Возвращает новый массив, отсортированный по убыванию

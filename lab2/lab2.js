@@ -54,6 +54,7 @@ function fib(n) {
     }
     return b;
 }
+module.exports = { lab2 };
 
 /**
  * Возвращает функцию, сравнивающую свой аргумент с x.
