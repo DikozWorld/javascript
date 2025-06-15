@@ -7,7 +7,7 @@ import {
   compare,
   sum,
   addBlackSpot
-} from '../lab2/lab2.js'; 
+} from './lab2.js'; 
 
 describe("pow", function() {
   it("2^2 = 4", function() {
