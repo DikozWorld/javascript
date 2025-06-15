@@ -4,7 +4,7 @@
  * @param {number} n - Показатель степени.
  * @returns {number} Результат x^n.
  */
-function pow(x, n) {
+export function pow(x, n) {
   return x ** n;
 }
 
@@ -13,7 +13,7 @@ function pow(x, n) {
  * @param {number} n - Верхняя граница суммы.
  * @returns {number} Сумма чисел от 1 до n.
  */
-const sumTo = new Function('n', `
+export const sumTo = new Function('n', `
   let sum = 0;
   for (let i = 1; i <= n; i++) {
     sum += i;
@@ -26,7 +26,7 @@ const sumTo = new Function('n', `
  * @param {number} year - Год для проверки.
  * @returns {boolean} true, если год високосный, иначе false.
  */
-function isLeapYear(year) {
+export function isLeapYear(year) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
 }
 
@@ -35,7 +35,7 @@ function isLeapYear(year) {
  * @param {number} n - Число для вычисления факториала.
  * @returns {bigint} Факториал числа n.
  */
-function factorial(n) {
+export function factorial(n) {
   if (n === 0) return 1n;
   return BigInt(n) * factorial(n - 1);
 }
@@ -63,7 +63,7 @@ export function fib(n) {
  *   - false, если y < x,
  *   - null, если y === x.
  */
-function compare(x) {
+export function compare(x) {
   return function(y) {
     if (y > x) return true;
     if (y < x) return false;
@@ -76,7 +76,7 @@ function compare(x) {
  * @param {...number} args - Числа для суммирования.
  * @returns {number} Сумма всех аргументов.
  */
-function sum(...args) {
+export function sum(...args) {
   return args.reduce((a, b) => a + b, 0);
 }
 
@@ -85,7 +85,7 @@ function sum(...args) {
  * @param {Object} obj - Объект, к которому добавляется свойство.
  * @returns {Object} Исходный объект с добавленным свойством [Symbol.for("blackSpot")].
  */
-function addBlackSpot(obj) {
+export function addBlackSpot(obj) {
   obj[Symbol.for("blackSpot")] = true;
   return obj;
 }

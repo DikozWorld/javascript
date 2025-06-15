@@ -1,3 +1,14 @@
+import { 
+  pow,
+  sumTo,
+  isLeapYear,
+  factorial,
+  fib,
+  compare,
+  sum,
+  addBlackSpot
+} from './lab2.js'; 
+
 describe("pow", function() {
   it("2^2 = 4", function() {
     assert.equal(pow(2, 2), 4);
