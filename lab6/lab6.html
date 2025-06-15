@@ -1,37 +1,70 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Лабораторная работа №6</title>
-  <link rel="stylesheet" href="lab6_style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №6 - Формы и элементы управления</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Лабораторная работа №6</h1>
+    <h1>Лабораторная работа №6. Формы и элементы управления</h1>
 
-  <h2>1. Работа с select</h2>
-  <select id="music-genre">
-    <option value="Rock">Рок</option>
-    <option value="Blues" selected>Блюз</option>
-  </select>
+    <!-- Задание 1 -->
+    <section id="task1">
+        <h2>1. Работа с элементом select</h2>
+        <select id="musicGenre">
+            <option value="Rock">Рок</option>
+            <option value="Blues" selected>Блюз</option>
+        </select>
+        <div id="selectOutput" class="output"></div>
+    </section>
 
-  <h2>2. Редактируемый div</h2>
-  <div id="editable-div">Нажмите Ctrl+E для редактирования</div>
+    <!-- Задание 2 -->
+    <section id="task2">
+        <h2>2. Плейсхолдер-подсказка</h2>
+        <input type="text" id="placeholderInput" data-placeholder="Введите текст" class="placeholder">
+    </section>
 
-  <h2>3. Редактируемая таблица</h2>
-  <table id="editable-table">
-    <tr>
-      <td>Ячейка 1</td>
-      <td>Ячейка 2</td>
-    </tr>
-    <tr>
-      <td>Ячейка 3</td>
-      <td>Ячейка 4</td>
-    </tr>
-  </table>
+    <!-- Задание 3 -->
+    <section id="task3">
+        <h2>3. Редактируемый div</h2>
+        <div id="editableDiv">Нажмите Ctrl+E для редактирования этого текста. Ctrl+S - сохранить, Esc - отмена.</div>
+    </section>
 
-  <h2>4. Модальное окно</h2>
-  <button id="show-prompt-button">Показать prompt</button>
+    <!-- Задание 4 -->
+    <section id="task4">
+        <h2>4. Редактируемая таблица</h2>
+        <table id="editableTable">
+            <tr>
+                <td>Ячейка 1</td>
+                <td>Ячейка 2</td>
+            </tr>
+            <tr>
+                <td>Ячейка 3</td>
+                <td>Ячейка 4</td>
+            </tr>
+        </table>
+    </section>
 
-  <script src="lab6_script.js"></script>
+    <!-- Задание 5 -->
+    <section id="task5">
+        <h2>5. Модальное окно с промптом</h2>
+        <button id="showPromptBtn">Показать промпт</button>
+        <div id="promptResult" class="output"></div>
+    </section>
+
+    <!-- Модальное окно для задания 5 -->
+    <div class="modal-overlay" id="promptModal">
+        <div class="modal-content">
+            <div id="promptMessage"></div>
+            <input type="text" id="promptInput">
+            <div class="modal-buttons">
+                <button id="promptCancelBtn">ОТМЕНА</button>
+                <button id="promptOkBtn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
