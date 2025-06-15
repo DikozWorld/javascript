@@ -54,3 +54,5 @@ describe("addBlackSpot", function() {
         assert.strictEqual(addBlackSpot(obj), obj);
     });
 });
+
+mocha.run();
