@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'Enter') {
                 complete(promptInput.value);
             } else if (e.key === 'Escape') {
-                complete(null);
+                callback(null);
             } else if (e.key === 'Tab') {
                 e.preventDefault();
                 const focusable = [promptInput, promptOkBtn, promptCancelBtn];
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Назначаем обработчики
         promptOkBtn.onclick = function() { complete(promptInput.value); };
-        promptCancelBtn.onclick = function() { complete(null); };
+        promptCancelBtn.onclick = function() { callback(null); };
         document.addEventListener('keydown', handleKeyDown);
     };
 
