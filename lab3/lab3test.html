@@ -1,23 +1,25 @@
 ﻿<!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тестирование lab3.js</title>
-    <!-- стили mocha для отображения результатов -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
-    <!-- фреймворк mocha -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
-    <!-- библиотека утверждений chai -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+  <meta charset="utf-8">
+  <title>Тесты для lab3.js</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.0.0/mocha.css">
 </head>
-
 <body>
-    <!-- элемент для результатов тестов -->
-    <div id="mocha"></div>
-
-    <!-- подключаем тесты из внешнего файла -->
-    <script type="module" src="lab3tests.js"></script>
+  <div id="mocha"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.0.0/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.0/chai.min.js"></script>
+  <script>
+    mocha.setup('bdd');
+    const { expect } = chai;
+  </script>
+  <script type="module">
+    import * as lab3 from './lab3.js';
+    window.lab3 = lab3; // Делаем функции глобальными для тестов
+  </script>
+  <script src="tests.js"></script> <!-- Файл с тестами -->
+  <script>
+    mocha.run();
+  </script>
 </body>
 </html>

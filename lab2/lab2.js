@@ -41,11 +41,11 @@ function factorial(n) {
 }
 
 /**
- * Вычисляет n-ное число Фибоначчи (с поддержкой больших чисел через BigInt).
- * @param {number} n - Номер числа в последовательности Фибоначчи.
- * @returns {bigint} n-ное число Фибоначчи.
+ * Вычисляет n-ное число Фибоначчи (с поддержкой BigInt).
+ * @param {number} n - Номер числа в последовательности.
+ * @returns {bigint} Число Фибоначчи.
  */
-function fib(n) {
+export function fib(n) {
   if (n === 0) return 0n;
   if (n === 1) return 1n;
   let a = 0n, b = 1n;
