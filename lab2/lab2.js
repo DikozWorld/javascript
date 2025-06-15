@@ -45,7 +45,7 @@ function factorial(n) {
  * @param {number} n - Номер числа Фибоначчи.
  * @returns {bigint} Число Фибоначчи.
  */
-function fib(n) {
+export function fib(n) {
     if (n === 0) return 0n;
     if (n === 1) return 1n;
     let a = 0n, b = 1n;
@@ -54,7 +54,6 @@ function fib(n) {
     }
     return b;
 }
-module.exports = { lab2 };
 
 /**
  * Возвращает функцию, сравнивающую свой аргумент с x.

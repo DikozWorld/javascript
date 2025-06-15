@@ -51,7 +51,7 @@ export function camelize(str) {
     }).join('');
 }
 
-const { fib } = require('../lab2/lab2');
+import { fib } from '../lab2/lab2'; 
 
 /**
  * Возвращает новый массив, отсортированный по убыванию
